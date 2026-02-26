@@ -9,6 +9,16 @@ COLOR_BLACK = (0, 0, 0)
 COLOR_WHITE = (255, 255, 255)
 def main():
   # GAME SETUP
+
+  #create object to keep track of time
+  clock = pygame.time.Clock()
+  
+  """
+  this is to check whether or not to move the ball
+  we will make it move after 3 seconds
+  """
+  started = False
+
   """
   these are the players' game paddles
   the pygame.Rect function need the x, y, width and height
