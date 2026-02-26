@@ -56,6 +56,15 @@ def main():
 
       # if the user exits the window
       if event.type == pygame.QUIT:
-
         # exit the function, to finish the game
+
+        #drawing players' paddles
+        pygame.draw.rect(screen, COLOR_WHITE, paddle_1_rect)
+        pygame.draw.rect(screen, COLOR_WHITE, paddle_2_rect)
+
+        # drawing the ball
+        pygame.draw.rect(screen, COLOR_WHITE, ball_rect)
+
+        #update display
+        pygame.display.update()
         return
