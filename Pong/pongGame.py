@@ -69,6 +69,16 @@ def main():
     # update the display
     pygame.display.flip()
 
+    clock.tick(60)
+
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        pygame.quit()
+        return
+      if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_SPACE:
+          started = True
+
     """
     set the back ground color to black
     needs to be called everytime the game updates
