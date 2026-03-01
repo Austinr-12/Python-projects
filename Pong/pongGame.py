@@ -122,7 +122,11 @@ def main():
         ball_accel_x *= -1
         ball_rect.left -= 5
 
-      
+      # if the game is started (after 3 seconds this is true)
+      if started:
+        # move the ball
+        ball_rect.left += ball_accel_x * delta_time
+        ball_rect.top += ball_accel_y * delta_time
 
       # if the user exits the window
       if event.type == pygame.QUIT:
