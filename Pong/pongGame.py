@@ -95,6 +95,21 @@ def main():
     # checking for events
     for event in pygame.event.get():
 
+      # if the ball goes out of bounds, end the game
+      if ball_rect.left <= 0 or ball_rect.left >= SCREEN_WIDTH:
+        return
+
+      # if the ball is getting close to the top (15 is an arbitrary number, but I found that it worked great)
+      if ball_rect.top < 0:
+        # invert its vertical velocity
+        ball_accel_y *= -1
+        # add a bit of y to it to not trigger the above code again
+        ball_rect.top = 0
+      # do the same thing with the bottom
+      if ball_rect.bottom > SCREEN_HEIGHT - ball_rect.height:
+        ball_accel_y *= -1
+        ball_rect.top = SCREEN_HEIGHT - ball_rect
+
       # if the user exits the window
       if event.type == pygame.QUIT:
         # exit the function, to finish the game
