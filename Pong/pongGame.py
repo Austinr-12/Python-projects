@@ -110,6 +110,20 @@ def main():
         ball_accel_y *= -1
         ball_rect.top = SCREEN_HEIGHT - ball_rect
 
+      """
+      if paddle_1_rect collides with the ball and the ball is in front of it,
+      change the speed of the ball and make it move a little in the other way
+      """
+      if paddle_1_rect.colliderect(ball_rect) and paddle_1_rect.left < ball_rect.left:
+        ball_accel_x *= -1
+        ball_rect.left += 5
+      # do the same with paddle_2_rect
+      if paddle_2_rect.colliderect(ball_rect) and paddle_2_rect.left > ball_rect.left:
+        ball_accel_x *= -1
+        ball_rect.left -= 5
+
+      
+
       # if the user exits the window
       if event.type == pygame.QUIT:
         # exit the function, to finish the game
