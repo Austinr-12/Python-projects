@@ -95,6 +95,18 @@ def main():
     # checking for events
     for event in pygame.event.get():
 
+      # if the user is pressing a key
+      if event.type == pygame.KEYDOWN:
+
+        # PLAYER 1
+        # if the key is W, set the movement of paddle_1 to go up
+        if event.key == pygame.K_w:
+          paddle_1_move = -0.5
+
+        # if the key is S, set the movement of paddle_1 to go down
+        if event.key == pygame.K_s:
+          paddle_1_move = 0.5
+
       # if the ball goes out of bounds, end the game
       if ball_rect.left <= 0 or ball_rect.left >= SCREEN_WIDTH:
         return
