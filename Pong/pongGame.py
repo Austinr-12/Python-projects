@@ -107,6 +107,14 @@ def main():
         if event.key == pygame.K_s:
           paddle_1_move = 0.5
 
+       # PLAYER 2
+      # if the key is the up arrow, set the movement of paddle_2 to go up
+      if event.key == pygame.K_UP:
+        paddle_2_move = -0.5
+      # if the key is the down arrow, set the movement of paddle_2 to go down
+      if event.key == pygame.K_DOWN:
+        paddle_2_move = 0.5
+
       # if the ball goes out of bounds, end the game
       if ball_rect.left <= 0 or ball_rect.left >= SCREEN_WIDTH:
         return
