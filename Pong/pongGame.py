@@ -122,6 +122,10 @@ def main():
         if event.key == pygame.K_w or event.key == pygame.K_s:
           paddle_1_move = 0.0
 
+       # if the key released is the up or down arrow, stop the movement of paddle_2
+      if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+        paddle_2_move = 0.0
+      
       # if the ball goes out of bounds, end the game
       if ball_rect.left <= 0 or ball_rect.left >= SCREEN_WIDTH:
         return
