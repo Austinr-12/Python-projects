@@ -1,5 +1,6 @@
 import pygame
 import random
+
 # constants for the windows width and height values
 SCREEN_WIDTH = 960
 SCREEN_HEIGHT = 720
@@ -7,23 +8,33 @@ SCREEN_HEIGHT = 720
 # the RGB values for the colors used in the game
 COLOR_BLACK = (0, 0, 0)
 COLOR_WHITE = (255, 255, 255)
-def main():
-  # GAME SETUP
 
-  #create object to keep track of time
+def main(): 
+  # GAME SETUP
+  
+  # initialize the PyGame library (this is absolutely necessary)
+  pygame.init()
+
+  # this creates the window for the game
+  screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+  
+  # set the window's title
+  pygame.display.set_caption('Pong')
+
+  # create the clock object to keep track of the time
   clock = pygame.time.Clock()
   
-  """
+  '''
   this is to check whether or not to move the ball
   we will make it move after 3 seconds
-  """
+  '''
   started = False
-
-  """
+  
+  '''
   these are the players' game paddles
-  the pygame.Rect function need the x, y, width and height
+  the `Rect` function need the x, y, width and height
   of the rectangles we will be drawing
-  """
+  '''
   paddle_1_rect = pygame.Rect(30, 0, 7, 100)
   paddle_2_rect = pygame.Rect(SCREEN_WIDTH - 50, 0, 7, 100)
 
@@ -34,7 +45,7 @@ def main():
   # this is the rectangle that represents the ball
   ball_rect = pygame.Rect(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 25, 25)
 
-  # determine the x and y speed of the ball (0.1 is just to scale the speed down)
+  # determine the x and y speed of the ball 
   ball_accel_x = random.randint(2, 4) * 0.1
   ball_accel_y = random.randint(2, 4) * 0.1
 
@@ -43,15 +54,6 @@ def main():
     ball_accel_x *= -1
   if random.randint(1, 2) == 1:
     ball_accel_y *= -1
-
-    # initialize the PyGame library (this is absolutely necessary)
-    pygame.init()
-
-  # this creates the window for the game
-  screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
-  # set the window's title
-  pygame.display.set_caption("Pong")
 
   # GAME LOOP
   while True:
