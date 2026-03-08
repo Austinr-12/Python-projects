@@ -89,14 +89,20 @@ def main():
 
 
 
-    """
+    '''
     get the time elapse between now and the last frame
     60 is an arbitrary number but the game runs smooth at 60 FPS
-    """
+    '''
     delta_time = clock.tick(60)
 
     # checking for events
     for event in pygame.event.get():
+
+      # if the user exits the window
+      if event.type == pygame.QUIT:
+
+        # exit the function, to finish the game
+        return
 
       # if the user is pressing a key
       if event.type == pygame.KEYDOWN:
@@ -110,24 +116,24 @@ def main():
         if event.key == pygame.K_s:
           paddle_1_move = 0.5
 
-      # PLAYER 2
-      # if the key is the up arrow, set the movement of paddle_2 to go up
-      if event.key == pygame.K_UP:
-        paddle_2_move = -0.5
-      # if the key is the down arrow, set the movement of paddle_2 to go down
-      if event.key == pygame.K_DOWN:
-        paddle_2_move = 0.5
-
+        # PLAYER 2
+        # if the key is the up arrow, set the movement of paddle_2 to go up
+        if event.key == pygame.K_UP:
+          paddle_2_move = -0.5
+        # if the key is the down arrow, set the movement of paddle_2 to go down
+        if event.key == pygame.K_DOWN:
+          paddle_2_move = 0.5
 
       # if the player released a key
       if event.type == pygame.KEYUP:
         # if the key released is w or s, stop the movement of paddle_1
-        if event.key == pygame.K_w or event.key == pygame.K_s:
+        if event.key == pygame.K_w or event.key == pygame.K_s: 
           paddle_1_move = 0.0
 
-       # if the key released is the up or down arrow, stop the movement of paddle_2
-      if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-        paddle_2_move = 0.0
+        # if the key released is the up or down arrow, stop the movement of paddle_2
+        if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+          paddle_2_move = 0.0
+
       
       # if the ball goes out of bounds, end the game
       if ball_rect.left <= 0 or ball_rect.left >= SCREEN_WIDTH:
