@@ -133,52 +133,39 @@ def main():
         # if the key released is the up or down arrow, stop the movement of paddle_2
         if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
           paddle_2_move = 0.0
-
       
-      # if the ball goes out of bounds, end the game
-      if ball_rect.left <= 0 or ball_rect.left >= SCREEN_WIDTH:
-        return
+      '''
+    move paddle_1 and paddle_2 according to their `move` variables
+    we also multiply the `move` variable by the delta time to keep movement consistent through frames
+    '''
+    paddle_1_rect.top += paddle_1_move * delta_time
+    paddle_2_rect.top += paddle_2_move * delta_time
 
-      # if the ball is getting close to the top (15 is an arbitrary number, but I found that it worked great)
-      if ball_rect.top < 0:
-        # invert its vertical velocity
-        ball_accel_y *= -1
-        # add a bit of y to it to not trigger the above code again
-        ball_rect.top = 0
-      # do the same thing with the bottom
-      if ball_rect.bottom > SCREEN_HEIGHT - ball_rect.height:
-        ball_accel_y *= -1
-        ball_rect.top = SCREEN_HEIGHT - ball_rect
+    # if paddle_1 is going out of the screen by the top, set it to the maximum to limit its movement
+    if paddle_1_rect.top < 0:
+      paddle_1_rect.top = 0
+    
+    # paddle_2 is going out of the screen by the bottom, do the same thing   
+    if paddle_1_rect.bottom > SCREEN_HEIGHT:
+      paddle_1_rect.bottom = SCREEN_HEIGHT
 
-      """
-      if paddle_1_rect collides with the ball and the ball is in front of it,
-      change the speed of the ball and make it move a little in the other way
-      """
-      if paddle_1_rect.colliderect(ball_rect) and paddle_1_rect.left < ball_rect.left:
-        ball_accel_x *= -1
-        ball_rect.left += 5
-      # do the same with paddle_2_rect
-      if paddle_2_rect.colliderect(ball_rect) and paddle_2_rect.left > ball_rect.left:
-        ball_accel_x *= -1
-        ball_rect.left -= 5
+    # do the same thing with paddle_2
+    if paddle_2_rect.top < 0:
+      paddle_2_rect.top = 0
+    if paddle_2_rect.bottom > SCREEN_HEIGHT:
+      paddle_2_rect.bottom = SCREEN_HEIGHT      
 
-      # if the game is started (after 3 seconds this is true)
-      if started:
-        # move the ball
-        ball_rect.left += ball_accel_x * delta_time
-        ball_rect.top += ball_accel_y * delta_time
+    # if the ball is getting close to the top (15 is an arbitrary number, but I found that it worked great)
+    if ball_rect.top < 0:
+      # invert its vertical velocity 
+      ball_accel_y *= -1
+      # add a bit of y to it to not trigger the above code again
+      ball_rect.top = 0
+    # do the same thing with the bottom
+    if ball_rect.bottom > SCREEN_HEIGHT - ball_rect.height:
+      ball_accel_y *= -1
+      ball_rect.top = SCREEN_HEIGHT - ball_rect.height
 
-      # if the user exits the window
-      if event.type == pygame.QUIT:
-        # exit the function, to finish the game
-
-        #drawing players' paddles
-        pygame.draw.rect(screen, COLOR_WHITE, paddle_1_rect)
-        pygame.draw.rect(screen, COLOR_WHITE, paddle_2_rect)
-
-        # drawing the ball
-        pygame.draw.rect(screen, COLOR_WHITE, ball_rect)
-
-        #update display
-        pygame.display.update()
-        return
+    # if the ball goes out of bounds, end the game 
+    if ball_rect.left <= 0 or ball_rect.left >= SCREEN_WIDTH:
+      return
