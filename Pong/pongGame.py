@@ -170,82 +170,33 @@ def main():
       return
 
     '''
-    get the time elapse between now and the last frame
-    60 is an arbitrary number but the game runs smooth at 60 FPS
+    if paddle_1_rect collides with the ball and the ball is in front of it, 
+    change the speed of the ball and make it move a little in the other way
     '''
-    delta_time = clock.tick(60)
+    if paddle_1_rect.colliderect(ball_rect) and paddle_1_rect.left < ball_rect.left:
+      ball_accel_x *= -1
+      ball_rect.left += 5
+    # do the same with paddle_2_rect
+    if paddle_2_rect.colliderect(ball_rect) and paddle_2_rect.left > ball_rect.left:
+      ball_accel_x *= -1
+      ball_rect.left -= 5
 
-    # checking for events
-    for event in pygame.event.get():
+    # if the game is started (after 3 seconds this is true)
+    if started:
+      # move the ball
+      ball_rect.left += ball_accel_x * delta_time 
+      ball_rect.top += ball_accel_y * delta_time
 
-      # if the user exits the window
-      if event.type == pygame.QUIT:
+    # draw player 1 and player 2's rects with the white color
+    pygame.draw.rect(screen, COLOR_WHITE, paddle_1_rect)
+    pygame.draw.rect(screen, COLOR_WHITE, paddle_2_rect)
 
-        # exit the function, to finish the game
-        return
+    # draw the ball with the white color
+    pygame.draw.rect(screen, COLOR_WHITE, ball_rect)
 
-      # if the user is pressing a key
-      if event.type == pygame.KEYDOWN:
+    # update the display (this is necessary for Pygame)
+    pygame.display.update()
 
-        # PLAYER 1
-        # if the key is W, set the movement of paddle_1 to go up
-        if event.key == pygame.K_w:
-          paddle_1_move = -0.5
-
-        # if the key is S, set the movement of paddle_1 to go down
-        if event.key == pygame.K_s:
-          paddle_1_move = 0.5
-
-        # PLAYER 2
-        # if the key is the up arrow, set the movement of paddle_2 to go up
-        if event.key == pygame.K_UP:
-          paddle_2_move = -0.5
-        # if the key is the down arrow, set the movement of paddle_2 to go down
-        if event.key == pygame.K_DOWN:
-          paddle_2_move = 0.5
-
-      # if the player released a key
-      if event.type == pygame.KEYUP:
-        # if the key released is w or s, stop the movement of paddle_1
-        if event.key == pygame.K_w or event.key == pygame.K_s: 
-          paddle_1_move = 0.0
-
-        # if the key released is the up or down arrow, stop the movement of paddle_2
-        if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-          paddle_2_move = 0.0
-      
-      '''
-    move paddle_1 and paddle_2 according to their `move` variables
-    we also multiply the `move` variable by the delta time to keep movement consistent through frames
-    '''
-    paddle_1_rect.top += paddle_1_move * delta_time
-    paddle_2_rect.top += paddle_2_move * delta_time
-
-    # if paddle_1 is going out of the screen by the top, set it to the maximum to limit its movement
-    if paddle_1_rect.top < 0:
-      paddle_1_rect.top = 0
-    
-    # paddle_2 is going out of the screen by the bottom, do the same thing   
-    if paddle_1_rect.bottom > SCREEN_HEIGHT:
-      paddle_1_rect.bottom = SCREEN_HEIGHT
-
-    # do the same thing with paddle_2
-    if paddle_2_rect.top < 0:
-      paddle_2_rect.top = 0
-    if paddle_2_rect.bottom > SCREEN_HEIGHT:
-      paddle_2_rect.bottom = SCREEN_HEIGHT      
-
-    # if the ball is getting close to the top (15 is an arbitrary number, but I found that it worked great)
-    if ball_rect.top < 0:
-      # invert its vertical velocity 
-      ball_accel_y *= -1
-      # add a bit of y to it to not trigger the above code again
-      ball_rect.top = 0
-    # do the same thing with the bottom
-    if ball_rect.bottom > SCREEN_HEIGHT - ball_rect.height:
-      ball_accel_y *= -1
-      ball_rect.top = SCREEN_HEIGHT - ball_rect.height
-
-    # if the ball goes out of bounds, end the game 
-    if ball_rect.left <= 0 or ball_rect.left >= SCREEN_WIDTH:
-      return
+# run the game
+if __name__ == '__main__':
+  main()
