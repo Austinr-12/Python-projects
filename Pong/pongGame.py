@@ -103,7 +103,7 @@ def main():
         # exit the function, to finish the game
         return
 
-     # if the user is pressing a key
+      # if the user is pressing a key
       if event.type == pygame.KEYDOWN:
 
         # PLAYER 1
