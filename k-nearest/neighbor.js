@@ -4,4 +4,18 @@ class Point {
     this.y = Math.random() * height; // A random value along the y axis
     this.class = floor(Math.random() * 2); // A random class: either 0 or 1
   }
+
+  display() {
+    stroke(0);
+    strokeWeight(2);
+
+    // Coloring the points. Points in class 1 are red, points in class 0 are green
+    if (this.class == 1) {
+      fill(255, 0, 0);
+    } else {
+      fill(0, 255, 0);
+    }
+    // Drawing a circle at the correct position
+    ellipse(this.x, this.y, 20, 20);
+  }
 }
