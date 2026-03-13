@@ -15,6 +15,7 @@ class Point {
     } else {
       fill(0, 255, 0);
     }
+
     // Drawing a circle at the correct position
     ellipse(this.x, this.y, 20, 20);
   }
