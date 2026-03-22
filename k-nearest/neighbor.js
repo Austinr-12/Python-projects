@@ -20,3 +20,9 @@ class Point {
     ellipse(this.x, this.y, 20, 20);
   }
 }
+
+function setup() {
+  createCanvas(300, 300);
+  test_point = new Point();
+  test_point.display();
+}
