@@ -1,3 +1,6 @@
+
+var points = [];
+
 class Point {
   constructor() {
     this.x = Math.random() * width; // A random value along the x axis
@@ -22,6 +25,9 @@ class Point {
 }
 
 function setup() {
+  for (var i = 0; i < 20; i++) {
+  points.push(new Point());
+}
   createCanvas(300, 300);
   test_point = new Point();
   test_point.display();
