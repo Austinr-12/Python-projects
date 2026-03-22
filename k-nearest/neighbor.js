@@ -32,3 +32,11 @@ function setup() {
   test_point = new Point();
   test_point.display();
 }
+
+function draw() {
+  background(255);
+
+  for (var i = 0; i < points.length; i++) {
+    points[i].display();
+  }
+}
