@@ -40,3 +40,12 @@ function draw() {
     points[i].display();
   }
 }
+
+
+function classifyMouse() {
+  let distances = [];
+
+  for (var i = 0; i < points.length; i++) {
+    
+  }
+}
