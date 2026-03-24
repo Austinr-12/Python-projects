@@ -47,5 +47,6 @@ function classifyMouse() {
 
   for (var i = 0; i < points.length; i++) {
     let distance = dist(points[i].x, points[i].y, mouseX, mouseY);
+    distances.push([distance, points[i].class]);
   }
 }
