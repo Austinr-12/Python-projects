@@ -52,3 +52,16 @@ function classifyMouse() {
 
   distances.sort((a, b) => a[0] - b[0]);
 }
+
+
+let numZero = 0;
+let numOne = 0;
+
+// Looping through the 3 nearest neighbors and counting the classes
+for (var i = 0; i < 3; i++) {
+  if (distances[i][1] == 1) {
+    numOne++;
+  } else {
+    numZero++;
+  }
+}
