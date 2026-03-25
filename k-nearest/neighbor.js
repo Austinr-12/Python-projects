@@ -49,4 +49,6 @@ function classifyMouse() {
     let distance = dist(points[i].x, points[i].y, mouseX, mouseY);
     distances.push([distance, points[i].class]);
   }
+
+  distances.sort((a, b) => a[0] - b[0]);
 }
