@@ -65,3 +65,9 @@ for (var i = 0; i < 3; i++) {
     numZero++;
   }
 }
+
+
+noStroke();
+
+
+ellipse(mouseX, mouseY, 10, 10);
