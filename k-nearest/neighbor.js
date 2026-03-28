@@ -1,11 +1,11 @@
-
 var points = [];
 
 class Point {
   constructor() {
-    this.x = Math.random() * width; // A random value along the x axis
-    this.y = Math.random() * height; // A random value along the y axis
-    this.class = floor(Math.random() * 2); // A random class: either 0 or 1
+    // Leave some padding for axes
+    this.x = random(40, width - 20);  
+    this.y = random(20, height - 40);
+    this.class = floor(Math.random() * 2);
   }
 
   display() {
