@@ -8,19 +8,14 @@ class Point {
     this.class = floor(Math.random() * 2);
   }
 
-  display() {
-    stroke(0);
-    strokeWeight(2);
-
-    // Coloring the points. Points in class 1 are red, points in class 0 are green
+ display() {
+    textSize(20);
+    textAlign(CENTER, CENTER);
     if (this.class == 1) {
-      fill(255, 0, 0);
+      text("⚔️", this.x, this.y);
     } else {
-      fill(0, 255, 0);
+      text("🧙", this.x, this.y);
     }
-
-    // Drawing a circle at the correct position
-    ellipse(this.x, this.y, 20, 20);
   }
 }
 
