@@ -20,22 +20,24 @@ class Point {
 }
 
 function setup() {
-  for (var i = 0; i < 20; i++) {
-  points.push(new Point());
-}
   createCanvas(300, 300);
-  test_point = new Point();
-  test_point.display();
+  for (var i = 0; i < 20; i++) {
+    points.push(new Point());
+  }
 }
 
 function draw() {
   background(255);
 
+  drawAxes();
+
+  // Draw points
   for (var i = 0; i < points.length; i++) {
     points[i].display();
   }
-}
 
+  classifyMouse();
+}
 
 function classifyMouse() {
   let distances = [];
