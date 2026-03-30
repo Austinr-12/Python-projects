@@ -8,7 +8,7 @@ class Point {
     this.class = floor(Math.random() * 2);
   }
 
- display() {
+  display() {
     textSize(20);
     textAlign(CENTER, CENTER);
     if (this.class == 1) {
@@ -38,7 +38,6 @@ function draw() {
 
   classifyMouse();
 }
-
 function classifyMouse() {
   let distances = [];
 
