@@ -38,37 +38,3 @@ function draw() {
 
   classifyMouse();
 }
-function classifyMouse() {
-  let distances = [];
-
-  for (var i = 0; i < points.length; i++) {
-    let distance = dist(points[i].x, points[i].y, mouseX, mouseY);
-    distances.push([distance, points[i].class]);
-  }
-
-  distances.sort((a, b) => a[0] - b[0]);
-}
-
-
-let numZero = 0;
-let numOne = 0;
-
-// Looping through the 3 nearest neighbors and counting the classes
-for (var i = 0; i < 3; i++) {
-  if (distances[i][1] == 1) {
-    numOne++;
-  } else {
-    numZero++;
-  }
-}
-
-
-noStroke();
-
-if (numOne > numZero) {
-  fill(255, 0, 0);
-} else {
-  fill(0, 255, 0);
-}
-
-ellipse(mouseX, mouseY, 10, 10);
