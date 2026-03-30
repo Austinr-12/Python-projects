@@ -38,3 +38,43 @@ function draw() {
 
   classifyMouse();
 }
+
+function drawAxes() {
+  stroke(0);
+  strokeWeight(1);
+
+  // Axes
+  line(40, height - 40, width - 10, height - 40); // x-axis
+  line(40, height - 40, 40, 10); // y-axis
+
+  noStroke();
+  textSize(12);
+  textAlign(CENTER, CENTER);
+  text("health", width / 2, height - 15);
+
+  push();
+  translate(15, height / 2);
+  rotate(-HALF_PI);
+  text("strength", 0, 0);
+  pop();
+
+  // Tick marks on X axis
+  for (let i = 0; i <= 5; i++) {
+    let x = map(i, 0, 5, 40, width - 10);
+    stroke(0);
+    line(x, height - 40, x, height - 36);
+    noStroke();
+    textAlign(CENTER, TOP);
+    text(i * 20, x, height - 35);
+  }
+
+  // Tick marks on Y axis
+  for (let i = 0; i <= 5; i++) {
+    let y = map(i, 0, 5, height - 40, 10);
+    stroke(0);
+    line(40, y, 44, y);
+    noStroke();
+    textAlign(RIGHT, CENTER);
+    text(i * 20, 35, y);
+  }
+}
