@@ -78,3 +78,11 @@ function drawAxes() {
     text(i * 20, 35, y);
   }
 }
+
+function classifyMouse() {
+  let distances = [];
+  for (var i = 0; i < points.length; i++) {
+    let distance = dist(points[i].x, points[i].y, mouseX, mouseY);
+    distances.push([distance, points[i].class]);
+  }
+}
