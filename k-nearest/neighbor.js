@@ -97,4 +97,12 @@ function classifyMouse() {
       numZero++;
     }
   }
+
+  textSize(20);
+  textAlign(CENTER, CENTER);
+  if (numOne > numZero) {
+    text("⚔️", mouseX, mouseY);
+  } else {
+    text("🧙", mouseX, mouseY);
+  }
 }
