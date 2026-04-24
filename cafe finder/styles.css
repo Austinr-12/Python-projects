@@ -24,3 +24,28 @@ border: none;
     height: 400px;
 }
 
+.swipe-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.location-card {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 1vh;
+}
+.location-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+button:hover {
+    background: #555;
+}
