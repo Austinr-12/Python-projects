@@ -30,7 +30,13 @@
 
   if (cache.timestamp && now - cache.timestamp < 10 * 60 * 1000) {
     useLocation(cache.lat, cache.lng);
-  }
+  } else {
+    navigator.geolocation.getCurrentPosition(pos => {
+    const lat = pos.coords.latitude;
+    const lng = pos.coords.longitude;
+    localStorage.setItem('cachedLocation', JSON.stringify({ lat, lng, timestamp: now }));
+    useLocation(lat, lng);
+  }, () => alert("Location access denied or unavailable."));
   }
 
   </script>
