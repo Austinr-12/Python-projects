@@ -27,6 +27,10 @@
   function getLocation() {
   const cache = JSON.parse(localStorage.getItem('cachedLocation') || '{}');
   const now = Date.now();
+
+  if (cache.timestamp && now - cache.timestamp < 10 * 60 * 1000) {
+    useLocation(cache.lat, cache.lng);
+  }
   }
 
   </script>
